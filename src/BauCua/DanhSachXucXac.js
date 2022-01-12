@@ -17,13 +17,13 @@ export default function DanhSachXucXac(props) {
       >
         <div className="row">
           <div className="col-12" style={{ marginLeft: `80px` }}>
-            <XucXac item={danhSachXucXac[0]} />
+            <XucXac key={Date.now()} item={danhSachXucXac[0]} />
           </div>
           <div className="col-6" style={{ marginTop: `-40px` }}>
-            <XucXac item={danhSachXucXac[1]} />
+            <XucXac key={Date.now()} item={danhSachXucXac[1]} />
           </div>
           <div className="col-6" style={{ marginTop: `-40px` }}>
-            <XucXac item={danhSachXucXac[2]} />
+            <XucXac key={Date.now()} item={danhSachXucXac[2]} />
           </div>
         </div>
       </div>

@@ -1,32 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 
 export default function QuanCuoc(props) {
   const { item } = props;
   const dispatch = useDispatch();
-  
-  // const [propsSpringIncrease, setIncrease] = useSpring(() => {
-  //   return {
-  //     to: { scale: 1.25 },
-  //     from: { scale: 1 },
-  //     reset: true,
-  //   };
-  // });
-  
 
-  // const [propsSpringDecrease, setDecrease] = useSpring(()=>{
-  //   return{
-  //     from: { scale: 0.5 },
-  //     to: { scale: 1 },
-  //     reset: true,
-  //   }
-  // });
-
+  const [scale, setScale] = useState(1);
   const propsSpringIncrease = useSpring({
-    from: {scale: 0},
-    scale: 1,
-    reset: true,
+    from: { scale: 1 },
+    scale: scale,
+    config:{duration:100},
+    onRest: () => {
+      setScale(1);
+    },
   });
 
   return (
@@ -43,9 +30,7 @@ export default function QuanCuoc(props) {
             ),
           }}
           onClick={() => {
-            // console.log(propsSpringIncrease.scale);
-            // setIncrease({ scale: 1.25 });
-
+            setScale(1.25);
             dispatch({
               type: "DAT_CUOC",
               payload: item,
@@ -60,13 +45,13 @@ export default function QuanCuoc(props) {
           {item.diemCuoc}$
         </span>
         <animated.button
-          // style={{
-          //   transform: propsSpringDecrease.scale.to(
-          //     (scale) => `scale(${scale})`
-          //   ),
-          // }}
+          style={{
+            transform: propsSpringIncrease.scale.to(
+              (scale) => `scale(${scale})`
+            ),
+          }}
           onClick={() => {
-            // setDecrease({ scale: 1 });
+            setScale(1.25);
             dispatch({
               type: "DAT_CUOC",
               payload: item,
